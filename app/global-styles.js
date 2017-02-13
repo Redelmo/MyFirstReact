@@ -1,5 +1,5 @@
 import { injectGlobal } from 'styled-components';
-
+import styled from 'styled-components';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
@@ -28,3 +28,13 @@ injectGlobal`
     line-height: 1.5em;
   }
 `;
+
+
+// const NavigationStyle = styled.div`
+// font-size:2em;
+// `
+// export default NavigationStyle;
+const navItem = styled.a`
+font-size:2em;
+`
+export default navItem;

@@ -18,29 +18,50 @@ export default function createRoutes(store) {
 
   return [
     {
-      path: '/',
+      path: '/Home',
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/HomePage'),
+  ]);
+
+  const renderRoute = loadModule(cb);
+
+  importModules.then(([component]) => {
+    renderRoute(component);
+  });
+
+  importModules.catch(errorLoading);
+},
+    }, 
+{
+  path: '/Swoop',
+    name: 'swoop',
+      getComponent(nextState, cb) {
+    const importModules = Promise.all([
+          import('containers/Form'),
         ]);
 
-        const renderRoute = loadModule(cb);
+    const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
-          renderRoute(component);
-        });
+    importModules.then(([component]) => {
+      renderRoute(component);
+    });
 
-        importModules.catch(errorLoading);
-      },
-    }, {
-      path: '*',
-      name: 'notfound',
+    importModules.catch(errorLoading);
+  },
+}, 
+    
+{
+  path: '*',
+    name: 'notfound',
       getComponent(nextState, cb) {
         import('containers/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    },
+      .then(loadModule(cb))
+      .catch(errorLoading);
+  },
+},
+
+
   ];
 }
